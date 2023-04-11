@@ -134,7 +134,7 @@ resource "aws_instance" "web-talk2data" {
   }
 
   provisioner "remote-exec" {
-    inline = ["sudo docker run -it -d -e WEB_DOMAIN=${var.domain} -e BIOTURING_TOKEN=${var.bioturing_token} -e SSO_DOMAINS=${var.sso_domain} -e ADMIN_USERNAME=${var.admin_user} -e ADMIN_PASSWORD=${var.admin_passwd} -v /data/user_data:/data/user_data -v /data/app_data:/data/app_data -v /config/ssl:/config/ssl --name bioturing-ecosystem --shm-size=64gb -p 443:443 -p 80:80 bioturing/bioturing-ecosystem:2.0.1"]
+    inline = ["sudo docker run -it -d -e WEB_DOMAIN=${var.domain} -e BIOTURING_TOKEN=${var.bioturing_token} -e SSO_DOMAINS=${var.sso_domain} -e ADMIN_USERNAME=${var.admin_user} -e ADMIN_PASSWORD=${var.admin_passwd} -v /data/user_data:/data/user_data -v /data/app_data:/data/app_data -v /config/ssl:/config/ssl --name bioturing-ecosystem --gpus all --shm-size=64gb -p 443:443 -p 80:80 bioturing/bioturing-ecosystem:2.0.1"]
   }
 
   ebs_block_device {
